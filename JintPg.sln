@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JintPg", "JintPg\JintPg.csproj", "{E62602B2-9BFB-48F3-96EC-B5BEB696C9C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JintPg", "JintPg\JintPg.csproj", "{E62602B2-9BFB-48F3-96EC-B5BEB696C9C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jint.Require", "Jint.Require\Jint.Require.csproj", "{781C468B-B460-46FE-B1DF-23781EC752B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{E62602B2-9BFB-48F3-96EC-B5BEB696C9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E62602B2-9BFB-48F3-96EC-B5BEB696C9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E62602B2-9BFB-48F3-96EC-B5BEB696C9C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{781C468B-B460-46FE-B1DF-23781EC752B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{781C468B-B460-46FE-B1DF-23781EC752B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{781C468B-B460-46FE-B1DF-23781EC752B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{781C468B-B460-46FE-B1DF-23781EC752B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
