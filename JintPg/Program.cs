@@ -22,7 +22,10 @@ namespace JintPg
             jsonConfig = "{a:1,b:2, c:[include(),1,2,3,invoke(function(){cla=3;return cla})]}";
             jsonConfig = "{x:require('foo.js').f()}";
 
-            engine.ImplementRequire(path => "let x={}; x.f=function(){return 2}; x");
+            engine.ImplementRequire(new Settings()
+            {
+               LoadFileHandler = path => "let x={}; x.f=function(){return 2}; x",
+            });
             void Dump(Engine val)
             {
                 var json = JToken.FromObject(val.GetCompletionValue().ToObject()).ToString(Formatting.Indented);

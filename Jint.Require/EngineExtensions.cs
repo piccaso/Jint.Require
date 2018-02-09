@@ -4,20 +4,28 @@ using Jint.Parser.Ast;
 
 namespace Jint.Require
 {
+    public delegate string LoadFileDelagate(string path);
+    public class Settings
+    {
+        public string LoadFileFunctionName { get; set; } = "loadfile";
+        public string RequireFunctionName { get; set; } = "require";
+        public LoadFileDelagate LoadFileHandler { get; set; } = EngineExtensions.LoadFile;
+    }
     public static class EngineExtensions
     {
-        public delegate string LoadFileDelagate(string path);
-        public static void ImplementRequire(this Engine e, LoadFileDelagate loadFileHandler = null)
+        
+        public static void ImplementRequire(this Engine e, Settings settings = null)
         {
-            e.SetValue("loadFile", loadFileHandler ?? LoadFile);
-            e.Execute(@"function require(file){
-                let content = loadFile(file);
+            if(settings == null) settings = new Settings();
+            e.SetValue(settings.LoadFileFunctionName, settings.LoadFileHandler);
+            e.Execute($@"function {settings.RequireFunctionName}(file){{
+                let content = {settings.LoadFileFunctionName}(file);
                 return eval(content);
-            }");
+            }}");
         }
 
         
-        private static string LoadFile(string path)
+        internal static string LoadFile(string path)
         {
             var text = File.ReadAllText(path);
             if (Path.GetExtension(path).ToLower().EndsWith("json"))
