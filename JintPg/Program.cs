@@ -24,12 +24,18 @@ namespace JintPg
 
             engine.ImplementRequire(new Settings()
             {
-               LoadFileHandler = path => "let x={}; x.f=function(){return 2}; x",
+               LoadFileHandler = (p,wj) => "let x={}; x.f=function(){return 2}; x",
             });
             void Dump(Engine val)
             {
-                var json = JToken.FromObject(val.GetCompletionValue().ToObject()).ToString(Formatting.Indented);
-                Console.WriteLine(json);
+                var jsObj = val.GetCompletionValue();
+                //var obj = jsObj.ToObject();
+                // var str = JSON.stringify(obj, null, 2); // spacing level = 2
+                var str = engine.Json.Stringify(JsValue.Null, new JsValue[] {jsObj, JsValue.Null, 2}).AsString();
+                //var str = engine.Invoke("JSON.stringify", jsObj, null, 2).AsString();
+                Console.WriteLine(str);
+                //var json = JToken.FromObject(obj).ToString(Formatting.Indented);
+                //Console.WriteLine(json);
             }
 
             object Include(string file, string path = null)
