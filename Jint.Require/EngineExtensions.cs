@@ -14,13 +14,19 @@ namespace Jint.Require
     public static class EngineExtensions
     {
         
-        public static void ImplementRequire(this Engine e, Settings settings = null)
+        public static Engine ImplementRequire(this Engine e, Settings settings = null)
         {
             if(settings == null) settings = new Settings();
             e.SetValue(settings.LoadFileFunctionName, settings.LoadFileHandler);
-            e.Execute($@"function {settings.RequireFunctionName}(file){{
+            return e.Execute($@"function {settings.RequireFunctionName}(file){{
                 let content = {settings.LoadFileFunctionName}(file, true);
-                return eval(content);
+                try {{
+                    this._file_ = file;
+                    return eval(content);
+                    this._file_ = null;
+                }}catch(e){{
+                    throw 'error evaluating content of ' + file;
+                }}
             }}");
         }
 
@@ -42,7 +48,7 @@ namespace Jint.Require
             {
                 var uid = Guid.NewGuid().ToString().Replace("-", "");
                 var id = $"jsonObject_{uid}";
-                text = $";var {id}={text};{id}";
+                text = $";let {id}={text};{id}";
             }
 
             return text;
