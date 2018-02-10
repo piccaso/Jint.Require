@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Jint.Native;
+using Jint.Runtime;
 
 namespace Jint.Require
 {
@@ -30,9 +31,14 @@ namespace Jint.Require
             }}");
         }
 
-        public static string ToJson(this JsValue value, Engine e)
+        public static string ToJson(this JsValue result, Engine engine)
         {
-            return e.Json.Stringify(JsValue.Null, new[] { value, JsValue.Null, 2 }).AsString();
+            if (result.Type != Types.None && result.Type != Types.Null && result.Type != Types.Undefined)
+            {
+                return TypeConverter.ToString(engine.Json.Stringify(engine.Json, Arguments.From(result, Undefined.Instance, "  ")));   
+            }
+
+            return null;
         }
 
         public static string GetCompletionValueJson(this Engine e)
