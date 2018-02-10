@@ -3,12 +3,6 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>0.0.0.3</AssemblyVersion>
-    <FileVersion>0.0.0.3</FileVersion>
-    <Version>0.0.3</Version>
-    <Authors />
-    <Company />
-    <Product />
     <PackageProjectUrl>https://github.com/piccaso/Jint.Require</PackageProjectUrl>
     <RepositoryUrl>https://github.com/piccaso/Jint.Require.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -17,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Jint" Version="2.11.58" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="2.1.17" />
   </ItemGroup>
 
 </Project>
