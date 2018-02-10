@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using Jint.Native;
-using Jint.Parser.Ast;
 
 namespace Jint.Require
 {
@@ -50,4 +49,5 @@ namespace Jint.Require
         }
 
     }
+
 }
