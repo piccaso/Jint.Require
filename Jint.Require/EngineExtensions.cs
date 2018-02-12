@@ -22,9 +22,12 @@ namespace Jint.Require
             return e.Execute($@"function {settings.RequireFunctionName}(file){{
                 let content = {settings.LoadFileFunctionName}(file, true);
                 try {{
+                    let oldFile = this._file_;
                     this._file_ = file;
-                    return eval(content);
-                    this._file_ = null;
+                    let evaluated = eval(content);
+                    //this._file_ = oldFile;
+                    return evaluated;
+                    
                 }}catch(e){{
                     throw 'error evaluating content of ' + file;
                 }}
